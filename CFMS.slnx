@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CFMS.Application/CFMS.Application.csproj" />
+  <Project Path="CFMS.Domain/CFMS.Domain.csproj" />
+  <Project Path="CFMS.Infrastructure/CFMS.Infrastructure.csproj" />
+  <Project Path="CFMS.WebAPI/CFMS.WebAPI.csproj" />
+</Solution>
