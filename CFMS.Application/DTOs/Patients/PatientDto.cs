@@ -9,9 +9,16 @@ public class PatientDto
     public Gender Gender { get; set; }
     public DateTime? DateOfBirth { get; set; }
     public string PhoneNumber { get; set; } = string.Empty;
-    public string? Address { get; set; }
+    public AddressDto? Address { get; set; }
     public string? NationalId { get; set; }
     public DateTime CreatedAt { get; set; }
+}
+
+public class AddressDto
+{
+    public string Province { get; set; } = string.Empty;
+    public string District { get; set; } = string.Empty;
+    public string Street { get; set; } = string.Empty;
 }
 
 public class CreatePatientRequest
@@ -20,7 +27,7 @@ public class CreatePatientRequest
     public Gender Gender { get; set; }
     public DateTime? DateOfBirth { get; set; }
     public string PhoneNumber { get; set; } = string.Empty;
-    public string? Address { get; set; }
+    public AddressDto? Address { get; set; }
     public string? NationalId { get; set; }
 }
 
@@ -30,6 +37,6 @@ public class UpdatePatientRequest
     public Gender Gender { get; set; }
     public DateTime? DateOfBirth { get; set; }
     public string PhoneNumber { get; set; } = string.Empty;
-    public string? Address { get; set; }
+    public AddressDto? Address { get; set; }
     public string? NationalId { get; set; }
 }
