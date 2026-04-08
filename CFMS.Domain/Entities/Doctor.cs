@@ -3,7 +3,7 @@ using CFMS.Domain.Common;
 
 namespace CFMS.Domain.Entities;
 
-public class Doctor : BaseEntity
+public class Doctor : SoftDeleteBaseEntity
 {
     public string FullName { get; set; } = string.Empty;
     public string Specialization { get; set; } = string.Empty;
