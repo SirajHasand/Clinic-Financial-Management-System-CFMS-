@@ -3,7 +3,7 @@ using CFMS.Domain.Common;
 
 namespace CFMS.Domain.Entities;
 
-public class Loan : BaseEntity
+public class Loan : SoftDeleteBaseEntity
 {
      public Guid CustomerId { get; set; }
     public Customer? Customer { get; set; }
