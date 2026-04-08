@@ -5,7 +5,7 @@ using CFMS.Domain.ValueObjects;
 
 namespace CFMS.Domain.Entities;
 
-public class Patient : BaseEntity
+public class Patient : SoftDeleteBaseEntity
 {
     public string FullName { get; set; } = string.Empty;
     public Gender Gender { get; set; }
