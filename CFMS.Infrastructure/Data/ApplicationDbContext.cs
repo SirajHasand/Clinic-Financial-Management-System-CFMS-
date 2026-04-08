@@ -66,10 +66,10 @@ public class ApplicationDbContext : DbContext
             }
         }
 
-        // Global query filter for soft delete
+        // Global query filter for soft delete - ONLY for entities with IsDeleted
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
-            if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
+            if (typeof(SoftDeleteBaseEntity).IsAssignableFrom(entityType.ClrType))
             {
                 // Create the filter expression
                 var parameter = Expression.Parameter(entityType.ClrType, "e");
