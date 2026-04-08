@@ -4,7 +4,7 @@ using CFMS.Domain.Enums;
 
 namespace CFMS.Domain.Entities;
 
-public class Payment : BaseEntity
+public class Payment : SoftDeleteBaseEntity
 {
      public decimal Amount { get; set; }
     public TransactionType TransactionType { get; set; }
