@@ -1,5 +1,6 @@
 using AutoMapper;
 using CFMS.Domain.Entities;
+using CFMS.Domain.ValueObjects;
 using CFMS.Application.DTOs.Patients;
 using CFMS.Application.DTOs.Doctors;
 using CFMS.Application.DTOs.Drugs;
@@ -11,6 +12,10 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        // Address mappings
+        CreateMap<AddressDto, Address>();
+        CreateMap<Address, AddressDto>();
+        
         // Patient mappings
         CreateMap<Patient, PatientDto>();
         CreateMap<CreatePatientRequest, Patient>();
