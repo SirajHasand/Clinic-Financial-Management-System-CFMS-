@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using CFMS.Domain.Entities;
 using CFMS.Domain.Common;
 using System.Linq.Expressions;
+using CFMS.Domain.ValueObjects;
 
 namespace CFMS.Infrastructure.Data;
 
@@ -26,6 +27,31 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Configure Address as owned type for Customer
+        modelBuilder.Entity<Customer>(builder =>
+        {
+            builder.OwnsOne(c => c.Address, address =>
+            {
+                address.Property(a => a.Province).HasMaxLength(100);
+                address.Property(a => a.District).HasMaxLength(100);
+                address.Property(a => a.Street).HasMaxLength(200);
+            });
+        });
+
+        // Configure Address as owned type for Patient
+        modelBuilder.Entity<Patient>(builder =>
+        {
+            builder.OwnsOne(p => p.Address, address =>
+            {
+                address.Property(a => a.Province).HasMaxLength(100);
+                address.Property(a => a.District).HasMaxLength(100);
+                address.Property(a => a.Street).HasMaxLength(200);
+            });
+        });
+
+        // Apply all configurations
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
         // Configure all DateTime properties to use UTC
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
@@ -40,10 +66,7 @@ public class ApplicationDbContext : DbContext
             }
         }
 
-        // Apply all configurations
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-
-        // Global query filter for soft delete - simpler approach
+        // Global query filter for soft delete
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
