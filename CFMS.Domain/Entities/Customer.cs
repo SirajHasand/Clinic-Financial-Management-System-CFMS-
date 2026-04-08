@@ -4,7 +4,7 @@ using CFMS.Domain.ValueObjects;
 
 namespace CFMS.Domain.Entities;
 
-public class Customer : BaseEntity
+public class Customer : SoftDeleteBaseEntity
 {
     public string FullName { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
