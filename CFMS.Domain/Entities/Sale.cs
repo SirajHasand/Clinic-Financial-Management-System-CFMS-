@@ -3,7 +3,7 @@ using CFMS.Domain.Common;
 
 namespace CFMS.Domain.Entities;
 
-public class Sale : BaseEntity
+public class Sale : SoftDeleteBaseEntity
 {
      public string InvoiceNumber { get; set; } = string.Empty;
     public Guid? CustomerId { get; set; }
