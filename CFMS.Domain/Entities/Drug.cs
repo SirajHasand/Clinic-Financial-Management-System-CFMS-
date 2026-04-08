@@ -3,7 +3,7 @@ using CFMS.Domain.Common;
 
 namespace CFMS.Domain.Entities;
 
-public class Drug : BaseEntity
+public class Drug : SoftDeleteBaseEntity
 {
       public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }
