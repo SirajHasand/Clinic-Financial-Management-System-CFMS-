@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using CFMS.Application.Common.Interfaces;
+using CFMS.Domain.Common;
 using CFMS.Infrastructure.Data;
 
 namespace CFMS.Infrastructure.Repositories;
