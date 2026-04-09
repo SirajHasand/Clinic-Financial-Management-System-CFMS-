@@ -1,3 +1,5 @@
+using CFMS.Domain.Common;
+
 namespace CFMS.Application.Common.Interfaces;
 
 public interface IUnitOfWork : IDisposable
