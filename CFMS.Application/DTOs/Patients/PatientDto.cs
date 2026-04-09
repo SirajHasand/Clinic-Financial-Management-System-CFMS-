@@ -2,41 +2,37 @@ using CFMS.Domain.Enums;
 
 namespace CFMS.Application.DTOs.Patients;
 
-public class PatientDto
-{
-    public Guid Id { get; set; }
-    public string FullName { get; set; } = string.Empty;
-    public Gender Gender { get; set; }
-    public DateTime? DateOfBirth { get; set; }
-    public string PhoneNumber { get; set; } = string.Empty;
-    public AddressDto? Address { get; set; }
-    public string? NationalId { get; set; }
-    public DateTime CreatedAt { get; set; }
-}
+public record PatientDto(
+    Guid Id,
+    string FullName,
+    Gender Gender,
+    DateTime? DateOfBirth,
+    string PhoneNumber,
+    AddressDto? Address,
+    string? NationalId,
+    DateTime CreatedAt
+);
 
-public class AddressDto
-{
-    public string Province { get; set; } = string.Empty;
-    public string District { get; set; } = string.Empty;
-    public string Street { get; set; } = string.Empty;
-}
+public record AddressDto(
+    string Province,
+    string District,
+    string Street
+);
 
-public class CreatePatientRequest
-{
-    public string FullName { get; set; } = string.Empty;
-    public Gender Gender { get; set; }
-    public DateTime? DateOfBirth { get; set; }
-    public string PhoneNumber { get; set; } = string.Empty;
-    public AddressDto? Address { get; set; }
-    public string? NationalId { get; set; }
-}
+public record CreatePatientRequest(
+    string FullName,
+    Gender Gender,
+    DateTime? DateOfBirth,
+    string PhoneNumber,
+    AddressDto? Address,
+    string? NationalId
+);
 
-public class UpdatePatientRequest
-{
-    public string FullName { get; set; } = string.Empty;
-    public Gender Gender { get; set; }
-    public DateTime? DateOfBirth { get; set; }
-    public string PhoneNumber { get; set; } = string.Empty;
-    public AddressDto? Address { get; set; }
-    public string? NationalId { get; set; }
-}
+public record UpdatePatientRequest(
+    string FullName,
+    Gender Gender,
+    DateTime? DateOfBirth,
+    string PhoneNumber,
+    AddressDto? Address,
+    string? NationalId
+);
