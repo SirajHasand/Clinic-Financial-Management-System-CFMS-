@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CFMS.Application.Common.Interfaces;
+using CFMS.Domain.Common;
 using CFMS.Infrastructure.Data;
 using CFMS.Infrastructure.Repositories;
 
