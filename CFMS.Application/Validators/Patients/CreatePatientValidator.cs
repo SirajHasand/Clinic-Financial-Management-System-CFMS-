@@ -28,21 +28,20 @@ public class CreatePatientValidator : AbstractValidator<CreatePatientRequest>
             .When(x => x.DateOfBirth.HasValue)
             .WithMessage("Date of birth cannot be in the future");
 
-        RuleFor(x => x.Address)
-            .NotNull().When(x => x.Address != null)
-            .WithMessage("Address must be valid if provided");
+        When(x => x.Address != null, () =>
+        {
+            RuleFor(x => x.Address!.Province)
+                .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Province))
+                .WithMessage("Province must not exceed 100 characters");
 
-        RuleFor(x => x.Address.Province)
-            .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Province))
-            .WithMessage("Province must not exceed 100 characters");
+            RuleFor(x => x.Address!.District)
+                .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.District))
+                .WithMessage("District must not exceed 100 characters");
 
-        RuleFor(x => x.Address.District)
-            .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.District))
-            .WithMessage("District must not exceed 100 characters");
-
-        RuleFor(x => x.Address.Street)
-            .MaximumLength(200).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Street))
-            .WithMessage("Street must not exceed 200 characters");
+            RuleFor(x => x.Address!.Street)
+                .MaximumLength(200).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Street))
+                .WithMessage("Street must not exceed 200 characters");
+        });
     }
 }
 
@@ -71,20 +70,19 @@ public class UpdatePatientValidator : AbstractValidator<UpdatePatientRequest>
             .When(x => x.DateOfBirth.HasValue)
             .WithMessage("Date of birth cannot be in the future");
 
-        RuleFor(x => x.Address)
-            .NotNull().When(x => x.Address != null)
-            .WithMessage("Address must be valid if provided");
+        When(x => x.Address != null, () =>
+        {
+            RuleFor(x => x.Address!.Province)
+                .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Province))
+                .WithMessage("Province must not exceed 100 characters");
 
-        RuleFor(x => x.Address.Province)
-            .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Province))
-            .WithMessage("Province must not exceed 100 characters");
+            RuleFor(x => x.Address!.District)
+                .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.District))
+                .WithMessage("District must not exceed 100 characters");
 
-        RuleFor(x => x.Address.District)
-            .MaximumLength(100).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.District))
-            .WithMessage("District must not exceed 100 characters");
-
-        RuleFor(x => x.Address.Street)
-            .MaximumLength(200).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Street))
-            .WithMessage("Street must not exceed 200 characters");
+            RuleFor(x => x.Address!.Street)
+                .MaximumLength(200).When(x => x.Address != null && !string.IsNullOrEmpty(x.Address.Street))
+                .WithMessage("Street must not exceed 200 characters");
+        });
     }
 }
