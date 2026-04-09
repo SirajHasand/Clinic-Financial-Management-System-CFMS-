@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using CFMS.Application.Common.Interfaces;
+using CFMS.Domain.Common;
 using CFMS.Infrastructure.Data;
 
 namespace CFMS.Infrastructure.Repositories;
