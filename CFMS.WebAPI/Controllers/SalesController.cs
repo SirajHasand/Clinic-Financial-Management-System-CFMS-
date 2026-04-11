@@ -23,37 +23,15 @@ public class SalesController : BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<SaleDto>> GetById(Guid id)
     {
-        try
-        {
-            var sale = await _saleService.GetByIdAsync(id);
-            return Ok(sale);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
+        var sale = await _saleService.GetByIdAsync(id);
+        return Ok(sale);
     }
 
     [HttpPost]
     public async Task<ActionResult<SaleDto>> Create([FromBody] CreateSaleRequest request)
     {
-        try
-        {
-            var sale = await _saleService.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = sale.Id }, sale);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var sale = await _saleService.CreateAsync(request);
+        return CreatedAtAction(nameof(GetById), new { id = sale.Id }, sale);
     }
 
     [HttpGet("today/total")]
