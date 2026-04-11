@@ -23,64 +23,28 @@ public class DoctorsController : BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<DoctorDto>> GetById(Guid id)
     {
-        try
-        {
-            var doctor = await _doctorService.GetByIdAsync(id);
-            return Ok(doctor);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
+        var doctor = await _doctorService.GetByIdAsync(id);
+        return Ok(doctor);
     }
 
     [HttpPost]
     public async Task<ActionResult<DoctorDto>> Create([FromBody] CreateDoctorRequest request)
     {
-        try
-        {
-            var doctor = await _doctorService.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = doctor.Id }, doctor);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var doctor = await _doctorService.CreateAsync(request);
+        return CreatedAtAction(nameof(GetById), new { id = doctor.Id }, doctor);
     }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<DoctorDto>> Update(Guid id, [FromBody] UpdateDoctorRequest request)
     {
-        try
-        {
-            var doctor = await _doctorService.UpdateAsync(id, request);
-            return Ok(doctor);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var doctor = await _doctorService.UpdateAsync(id, request);
+        return Ok(doctor);
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
-        try
-        {
-            await _doctorService.DeleteAsync(id);
-            return NoContent();
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        await _doctorService.DeleteAsync(id);
+        return NoContent();
     }
 }
