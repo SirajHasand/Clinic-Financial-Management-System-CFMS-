@@ -29,15 +29,8 @@ public class PatientsController : BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<PatientDto>> GetById(Guid id)
     {
-        try
-        {
-            var patient = await _patientService.GetByIdAsync(id);
-            return Ok(patient);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
+        var patient = await _patientService.GetByIdAsync(id);
+        return Ok(patient);
     }
 
     /// <summary>
@@ -46,15 +39,8 @@ public class PatientsController : BaseApiController
     [HttpPost]
     public async Task<ActionResult<PatientDto>> Create([FromBody] CreatePatientRequest request)
     {
-        try
-        {
-            var patient = await _patientService.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = patient.Id }, patient);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var patient = await _patientService.CreateAsync(request);
+        return CreatedAtAction(nameof(GetById), new { id = patient.Id }, patient);
     }
 
     /// <summary>
@@ -63,19 +49,8 @@ public class PatientsController : BaseApiController
     [HttpPut("{id}")]
     public async Task<ActionResult<PatientDto>> Update(Guid id, [FromBody] UpdatePatientRequest request)
     {
-        try
-        {
-            var patient = await _patientService.UpdateAsync(id, request);
-            return Ok(patient);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var patient = await _patientService.UpdateAsync(id, request);
+        return Ok(patient);
     }
 
     /// <summary>
@@ -84,18 +59,7 @@ public class PatientsController : BaseApiController
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
-        try
-        {
-            await _patientService.DeleteAsync(id);
-            return NoContent();
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        await _patientService.DeleteAsync(id);
+        return NoContent();
     }
 }
