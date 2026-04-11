@@ -23,64 +23,28 @@ public class DrugsController : BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<DrugDto>> GetById(Guid id)
     {
-        try
-        {
-            var drug = await _drugService.GetByIdAsync(id);
-            return Ok(drug);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
+        var drug = await _drugService.GetByIdAsync(id);
+        return Ok(drug);
     }
 
     [HttpPost]
     public async Task<ActionResult<DrugDto>> Create([FromBody] CreateDrugRequest request)
     {
-        try
-        {
-            var drug = await _drugService.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = drug.Id }, drug);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var drug = await _drugService.CreateAsync(request);
+        return CreatedAtAction(nameof(GetById), new { id = drug.Id }, drug);
     }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<DrugDto>> Update(Guid id, [FromBody] UpdateDrugRequest request)
     {
-        try
-        {
-            var drug = await _drugService.UpdateAsync(id, request);
-            return Ok(drug);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var drug = await _drugService.UpdateAsync(id, request);
+        return Ok(drug);
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
-        try
-        {
-            await _drugService.DeleteAsync(id);
-            return NoContent();
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        await _drugService.DeleteAsync(id);
+        return NoContent();
     }
 }
