@@ -2,7 +2,7 @@ using FluentValidation;
 using CFMS.Application.DTOs.Patients;
 
 namespace CFMS.Application.Validators.Patients;
-
+// Create Patient Validator
 public class CreatePatientValidator : AbstractValidator<CreatePatientRequest>
 {
     public CreatePatientValidator()
