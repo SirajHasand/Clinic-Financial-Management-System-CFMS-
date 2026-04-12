@@ -35,6 +35,7 @@ public class CreateDoctorValidator : AbstractValidator<CreateDoctorRequest>
 
 public class UpdateDoctorValidator : AbstractValidator<UpdateDoctorRequest>
 {
+    // Update Doctor Validator
     public UpdateDoctorValidator()
     {
         RuleFor(x => x.FullName)
