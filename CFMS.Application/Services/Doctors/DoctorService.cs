@@ -85,7 +85,7 @@ public class DoctorService : IDoctorService
         if (doctor == null)
             throw new KeyNotFoundException($"Doctor with id {id} not found");
 
-        // Check if email already exists (excluding current doctor)
+        // Check if email already exists 
         if (!string.IsNullOrEmpty(request.Email))
         {
             var emailExists = await _unitOfWork.Repository<Doctor>()
@@ -94,7 +94,7 @@ public class DoctorService : IDoctorService
                 throw new InvalidOperationException($"A doctor with email '{request.Email}' already exists");
         }
 
-        // Check if phone already exists (excluding current doctor)
+        // Check if phone already exists
         var phoneExists = await _unitOfWork.Repository<Doctor>()
             .ExistsAsync(d => d.PhoneNumber == request.PhoneNumber && d.Id != id);
         if (phoneExists)
