@@ -3,7 +3,6 @@ using CFMS.Application.Common.Interfaces;
 using CFMS.Application.DTOs.Expenses;
 using CFMS.Domain.Entities;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 
 namespace CFMS.Application.Services.Expenses;
 
