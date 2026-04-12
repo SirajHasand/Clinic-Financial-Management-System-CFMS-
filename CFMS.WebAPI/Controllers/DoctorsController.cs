@@ -3,7 +3,7 @@ using CFMS.Application.Services.Doctors;
 using CFMS.Application.DTOs.Doctors;
 
 namespace CFMS.WebAPI.Controllers;
-
+// Doctors Controller
 public class DoctorsController : BaseApiController
 {
     private readonly IDoctorService _doctorService;
