@@ -60,6 +60,7 @@ public class PatientService : IPatientService
         }
 
         // Check if phone already exists
+        //
         var phoneExists = await _unitOfWork.Repository<Patient>()
             .ExistsAsync(p => p.PhoneNumber == request.PhoneNumber);
         if (phoneExists)
@@ -92,7 +93,7 @@ public class PatientService : IPatientService
         if (patient == null)
             throw new KeyNotFoundException($"Patient with id {id} not found");
 
-        // Check if NationalId already exists (excluding current patient)
+        // Check if NationalId already exists 
         if (!string.IsNullOrEmpty(request.NationalId))
         {
             var nationalIdExists = await _unitOfWork.Repository<Patient>()
@@ -101,7 +102,7 @@ public class PatientService : IPatientService
                 throw new InvalidOperationException($"A patient with National ID '{request.NationalId}' already exists");
         }
 
-        // Check if phone already exists (excluding current patient)
+        // Check if phone already exists 
         var phoneExists = await _unitOfWork.Repository<Patient>()
             .ExistsAsync(p => p.PhoneNumber == request.PhoneNumber && p.Id != id);
         if (phoneExists)
