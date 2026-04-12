@@ -5,6 +5,7 @@ using CFMS.Application.DTOs.Patients;
 using CFMS.Application.DTOs.Doctors;
 using CFMS.Application.DTOs.Drugs;
 using CFMS.Application.DTOs.Sales;
+using CFMS.Application.DTOs.Expenses;
 
 namespace CFMS.Application.Common.Mappings;
 
@@ -37,15 +38,15 @@ public class MappingProfile : Profile
         // Customer mappings (for future use)
         // CreateMap<Customer, CustomerDto>();
         
-        // Sale mappings (for future use)
+        // Sale mappings
         CreateMap<Sale, SaleDto>();
         CreateMap<SaleItem, SaleItemDto>();
-        // CreateMap<Sale, SaleDto>();
-        // CreateMap<CreateSaleRequest, Sale>();
         
-        // Expense mappings (for future use)
-        // CreateMap<Expense, ExpenseDto>();
-        // CreateMap<CreateExpenseRequest, Expense>();
+        // Expense mappings
+        CreateMap<Expense, ExpenseDto>();
+        CreateMap<CreateExpenseRequest, Expense>();
+        CreateMap<UpdateExpenseRequest, Expense>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         
         // Loan mappings (for future use)
         // CreateMap<Loan, LoanDto>();
